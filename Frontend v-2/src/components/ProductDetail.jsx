@@ -19,7 +19,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/product/`);
+        const response = await axios.get(`https://ecommerce-backend-ea5g.onrender.com/product/`);
         const products = response.data;
         const foundProduct = products.find(p => p.id === parseInt(id));
         if (foundProduct) {
@@ -41,7 +41,7 @@ const ProductDetail = () => {
 
   // const handleAddToWishlist = async () => {
   //   try {
-  //     const response = await axios.post(`http://localhost:8080/wishlist/add`, {
+  //     const response = await axios.post(`https://ecommerce-backend-ea5g.onrender.com/wishlist/add`, {
   //       id: product.id,
   //       token
   //     });
@@ -60,7 +60,7 @@ const ProductDetail = () => {
       return;
     }
     try {
-      const response = await axios.post(`http://localhost:8080/cart/add?token=${token}`, {
+      const response = await axios.post(`https://ecommerce-backend-ea5g.onrender.com/cart/add?token=${token}`, {
         productId: product.id,
         quantity
       });

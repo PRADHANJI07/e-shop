@@ -37,8 +37,8 @@ const Navbar = () => {
       if (token) {
         try {
           const [productsResponse, cartResponse] = await Promise.all([
-            axios.get('http://localhost:8080/product/'),
-            axios.get(`http://localhost:8080/cart/?token=${token}`)
+            axios.get('https://ecommerce-backend-ea5g.onrender.com/product/'),
+            axios.get(`https://ecommerce-backend-ea5g.onrender.com/cart/?token=${token}`)
           ]);
 
           setProducts(productsResponse.data);

@@ -24,7 +24,7 @@ const CategoryProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/product/');
+        const response = await axios.get('https://ecommerce-backend-ea5g.onrender.com/product/');
         const filteredProducts = response.data.filter(
           (product) => product.categoryId === parseInt(categoryId)
         );
@@ -36,7 +36,7 @@ const CategoryProducts = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/catgory/list');
+        const response = await axios.get('https://ecommerce-backend-ea5g.onrender.com/catgory/list');
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -89,8 +89,8 @@ const CategoryProducts = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const apiUrl = isEditMode
-      ? `http://localhost:8080/product/update/${selectedProduct.id}`
-      : 'http://localhost:8080/product/add';
+      ? `https://ecommerce-backend-ea5g.onrender.com/product/update/${selectedProduct.id}`
+      : 'https://ecommerce-backend-ea5g.onrender.com/product/add';
     const method = 'POST';
 
     try {
@@ -105,7 +105,7 @@ const CategoryProducts = () => {
 
       setIsModalOpen(false);
       // Refresh the products list
-      const response = await axios.get('http://localhost:8080/product/');
+      const response = await axios.get('https://ecommerce-backend-ea5g.onrender.com/product/');
       const filteredProducts = response.data.filter(
         (product) => product.categoryId === parseInt(categoryId)
       );

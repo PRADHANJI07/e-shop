@@ -14,7 +14,7 @@ const CartPage = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/cart/?token=${token}`);
+        const response = await axios.get(`https://ecommerce-backend-ea5g.onrender.com/cart/?token=${token}`);
         const { cartItems, totalCost } = response.data;
         setCartItems(cartItems);
         setTotalCost(totalCost);
@@ -30,7 +30,7 @@ const CartPage = () => {
     try {
       // Remove each item from the cart
       for (const item of cartItems) {
-        await axios.delete(`http://localhost:8080/cart/delete/${item.id}?token=${token}`);
+        await axios.delete(`https://ecommerce-backend-ea5g.onrender.com/cart/delete/${item.id}?token=${token}`);
       }
       // After removing all items, clear the cart and redirect to home
       setCartItems([]);

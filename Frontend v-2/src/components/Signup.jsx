@@ -12,7 +12,7 @@ const Signup = () => {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const baseURL = 'http://localhost:8080/';
+  const baseURL = 'https://ecommerce-backend-ea5g.onrender.com/';
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {

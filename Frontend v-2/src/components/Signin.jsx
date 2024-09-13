@@ -20,7 +20,7 @@ const Signin = ({ setUserEmail, setIsLoggedIn }) => {
     const user = { email, password };
 
     try {
-      const response = await axios.post('http://localhost:8080/user/signin', user);
+      const response = await axios.post('https://ecommerce-backend-ea5g.onrender.com/user/signin', user);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userEmail', email); // Store email in localStorage
       setUserEmail(email);
@@ -87,9 +87,9 @@ const Signin = ({ setUserEmail, setIsLoggedIn }) => {
 
         {/* Right Section - Image */}
         <div className="hidden md:block md:w-1/2 mb-[6rem]">
-          <img 
+          <img
             src={signin}
-            alt="Shopping" 
+            alt="Shopping"
             className="object-cover h-[500px] w-[600px]"
           />
         </div>

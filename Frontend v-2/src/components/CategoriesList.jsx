@@ -17,7 +17,7 @@ const Categories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/catgory/list');
+        const response = await axios.get('https://ecommerce-backend-ea5g.onrender.com/catgory/list');
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -53,7 +53,7 @@ const Categories = () => {
     if (isEditMode && selectedCategory) {
       // Update category
       try {
-        await axios.post(`http://localhost:8080/catgory/update/${selectedCategory.id}`, newCategory);
+        await axios.post(`https://ecommerce-backend-ea5g.onrender.com/catgory/update/${selectedCategory.id}`, newCategory);
         console.log('Category successfully updated');
       } catch (error) {
         console.error('Error updating category:', error);
@@ -61,14 +61,14 @@ const Categories = () => {
     } else {
       // Create new category
       try {
-        await axios.post('http://localhost:8080/catgory/create', newCategory);
+        await axios.post('https://ecommerce-backend-ea5g.onrender.com/catgory/create', newCategory);
         console.log('Category successfully created');
       } catch (error) {
         console.error('Error creating category:', error);
       }
     }
     setIsModalOpen(false); // Close modal after submission
-    const response = await axios.get('http://localhost:8080/catgory/list');
+    const response = await axios.get('https://ecommerce-backend-ea5g.onrender.com/catgory/list');
     setCategories(response.data);
   };
 

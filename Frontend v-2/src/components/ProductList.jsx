@@ -23,7 +23,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:8080/product/');
+        const response = await fetch('https://ecommerce-backend-ea5g.onrender.com/product/');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         const transformedData = data.map(product => ({
@@ -43,7 +43,7 @@ const ProductList = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:8080/catgory/list');
+        const response = await fetch('https://ecommerce-backend-ea5g.onrender.com/catgory/list');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setCategories(data);
@@ -86,9 +86,9 @@ const ProductList = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const apiUrl = isEditMode
-      ? `http://localhost:8080/product/update/${selectedProduct.id}`
-      : 'http://localhost:8080/product/add';
-    const method ='POST';
+      ? `https://ecommerce-backend-ea5g.onrender.com/product/update/${selectedProduct.id}`
+      : 'https://ecommerce-backend-ea5g.onrender.com/product/add';
+    const method = 'POST';
 
     try {
       const response = await fetch(apiUrl, {
@@ -102,7 +102,7 @@ const ProductList = () => {
       if (response.ok) {
         console.log('Product successfully added/edited');
         setIsModalOpen(false);
-        const response = await fetch('http://localhost:8080/product/');
+        const response = await fetch('https://ecommerce-backend-ea5g.onrender.com/product/');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         const transformedData = data.map(product => ({
@@ -139,7 +139,7 @@ const ProductList = () => {
 
   return (
     <>
-      <Navbar products={products}/>
+      <Navbar products={products} />
       <div className="mt-14 mb-12">
         <div className="container mx-auto">
           {/* Header */}

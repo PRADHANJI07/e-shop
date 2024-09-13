@@ -8,7 +8,7 @@ const Categories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/catgory/list');
+        const response = await axios.get('https://ecommerce-backend-ea5g.onrender.com/catgory/list');
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -16,7 +16,7 @@ const Categories = () => {
     };
 
     fetchCategories();
-  }, []); 
+  }, []);
 
   return (
     <div>
@@ -63,21 +63,21 @@ const Categories = () => {
                   {category.description}
                 </p>
                 <Link to={`/category/${category.id}`}>
-  <button className="bg-primary hover:scale-105 duration-300 text-white py-1 px-4 rounded-full mt-4 group-hover:bg-white group-hover:text-primary">
-    View Products
-  </button>
-</Link>
+                  <button className="bg-primary hover:scale-105 duration-300 text-white py-1 px-4 rounded-full mt-4 group-hover:bg-white group-hover:text-primary">
+                    View Products
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
         </div>
         <div className="flex justify-center">
-        <Link to={`/category-list`}
-              className="text-center mt-10 cursor-pointer bg-primary text-white py-1 px-5 rounded-md"
-            >
-              View All
-              </Link>
-          </div>
+          <Link to={`/category-list`}
+            className="text-center mt-10 cursor-pointer bg-primary text-white py-1 px-5 rounded-md"
+          >
+            View All
+          </Link>
+        </div>
       </div>
     </div>
   );

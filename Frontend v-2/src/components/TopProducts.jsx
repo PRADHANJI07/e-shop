@@ -9,7 +9,7 @@ const TopProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:8080/product/');
+        const response = await fetch('https://ecommerce-backend-ea5g.onrender.com/product/');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
