@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaStar } from 'react-icons/fa';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom'; // Added useNavigate
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const CategoryProducts = () => {
   const { categoryId } = useParams();
-  console.log(categoryId);
+  const navigate = useNavigate(); // Initialize useNavigate
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [userEmail, setUserEmail] = useState('');
@@ -75,6 +75,10 @@ const CategoryProducts = () => {
     });
   };
 
+  const handleOrderClick = (productId) => {
+    navigate(`/product/${productId}`); // Navigate to the specific product's order page
+  };
+
   const handleInputChange = (e) => {
     setNewProduct({
       ...newProduct,
@@ -121,7 +125,6 @@ const CategoryProducts = () => {
       <Navbar />
       <div className="container mx-auto py-10">
         <div className="relative flex justify-center items-center mb-10">
-         
           {userEmail === 'admin@example.com' && (
             <button
               onClick={handleAddProductClick}
@@ -141,22 +144,34 @@ const CategoryProducts = () => {
                 alt={product.name}
                 className="h-48 w-full object-contain mb-4"
               />
-               <div className='flex justify-center'>
-              <h3 className="font-bold text-lg">{product.name}</h3></div>
-              <div className='flex justify-center'>
-              <p className="text-gray-600">{product.description}</p></div>
-              <div className='flex justify-center'>
-              <p className="text-lg font-semibold">₹{product.price}</p> </div>
+              <div className="flex justify-center">
+                <h3 className="font-bold text-lg">{product.name}</h3>
+              </div>
+              <div className="flex justify-center">
+                <p className="text-gray-600">{product.description}</p>
+              </div>
+              <div className="flex justify-center">
+                <p className="text-lg font-semibold">₹{product.price}</p>
+              </div>
               {userEmail === 'admin@example.com' && (
-                <div className='flex justify-center'>
-                <button
-                  onClick={() => handleEditProductClick(product)}
-                  className="bg-blue-500 text-white py-1 px-3 mt-3 rounded-full"
-                >
-                  Edit
-                </button>
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => handleEditProductClick(product)}
+                    className="bg-blue-500 text-white py-1 px-3 mt-3 rounded-full"
+                  >
+                    Edit
+                  </button>
                 </div>
               )}
+              {/* Order Button */}
+              <div className="flex justify-center">
+                <button
+                  onClick={() => handleOrderClick(product.id)} // Navigate to the specific product
+                  className="bg-primary text-white py-1 px-3 mt-3 rounded-full"
+                >
+                  Order Now
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -239,7 +254,10 @@ const CategoryProducts = () => {
               </div>
 
               <div className="text-right">
-                <button type="submit" className="bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-full">
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-full"
+                >
                   {isEditMode ? 'Update' : 'Submit'}
                 </button>
               </div>
@@ -247,6 +265,7 @@ const CategoryProducts = () => {
           </div>
         </div>
       )}
+      <Footer />
     </>
   );
 };

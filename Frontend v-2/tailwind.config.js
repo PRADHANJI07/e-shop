@@ -4,6 +4,27 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      animation: {
+        bounce: 'bounce 1s infinite',
+      },
+      keyframes: {
+        bounce: {
+          '0%, 20%, 50%, 80%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '40%': {
+            transform: 'translateY(-30px)',
+          },
+          '60%': {
+            transform: 'translateY(-15px)',
+          },
+        },
+      },
+      spacing: {
+        'delay-100': '0.1s',
+        'delay-200': '0.2s',
+        'delay-300': '0.3s',
+      },
       screens: {
         max950: { max: "950px" },
         max980: { max: "980px" },
@@ -35,13 +56,13 @@ export default {
       },
       colors: {
         primary: "#f54143",
-        secondary:"#f41f27",
+        secondary: "#f41f27",
       },
       container: {
         center: true,
-        padding:{
-          DEFAULT: '1rem',
-          sm: '3rem',
+        padding: {
+          DEFAULT: "1rem",
+          sm: "3rem",
         },
       },
       fontFamily: {
@@ -105,7 +126,7 @@ export default {
     //   mid: "1.06rem",
     //   "18xl": "2.31rem",
     //   "107xl": "7.88rem",
-    
+
     // },
   },
   plugins: [],

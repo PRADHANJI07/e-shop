@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import logooo from "../assets/logooo.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
+import { HiOutlineMenuAlt3, HiX } from "react-icons/hi"; // Icons for hamburger and close
 import DarkMode from './DarkMode';
 import axios from 'axios';
 
@@ -21,8 +22,9 @@ const Navbar = () => {
   const [cartItems, setCartItems] = useState([]);
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [searchQuery, setSearchQuery] = useState('');
-  const [products, setProducts] = useState([]); // To store all products
-  const [filteredProducts, setFilteredProducts] = useState([]); // To store filtered products
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // Mobile menu state
 
   useEffect(() => {
     const email = localStorage.getItem('userEmail');
@@ -31,17 +33,16 @@ const Navbar = () => {
       setIsLoggedIn(true);
     }
 
-    // Fetch all products and cart items count
     const fetchData = async () => {
       if (token) {
         try {
           const [productsResponse, cartResponse] = await Promise.all([
-            axios.get('http://localhost:8080/product/'), // Fetch all products
-            axios.get(`http://localhost:8080/cart/?token=${token}`) // Fetch cart items
+            axios.get('http://localhost:8080/product/'),
+            axios.get(`http://localhost:8080/cart/?token=${token}`)
           ]);
 
-          setProducts(productsResponse.data); // Store all products
-          setCartItems(cartResponse.data.cartItems); // Store cart items
+          setProducts(productsResponse.data);
+          setCartItems(cartResponse.data.cartItems);
         } catch (err) {
           console.error('Error fetching data:', err);
         }
@@ -56,7 +57,7 @@ const Navbar = () => {
     localStorage.removeItem('userEmail');
     setIsLoggedIn(false);
     setUserEmail('');
-    navigate('/'); // Redirect to home after logout
+    navigate('/');
   };
 
   const handleSignin = () => {
@@ -89,14 +90,18 @@ const Navbar = () => {
       );
       setFilteredProducts(filtered);
     } else {
-      setFilteredProducts([]); // Clear results if query is too short
+      setFilteredProducts([]);
     }
   };
 
   const handleProductClick = (productId) => {
-    setSearchQuery(''); // Clear search query
-    setFilteredProducts([]); // Clear filtered products
-    navigate(`/product/${productId}`); // Redirect to product page
+    setSearchQuery('');
+    setFilteredProducts([]);
+    navigate(`/product/${productId}`);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   return (
@@ -153,41 +158,37 @@ const Navbar = () => {
               )}
             </button>
 
-            {/* Darkmode */}
-            {/* <DarkMode /> */}
+            {/* Hamburger Icon for mobile screens */}
+            <button onClick={toggleMobileMenu} className="sm:hidden block">
+              {mobileMenuOpen ? (
+                <HiX className="text-2xl text-white" /> // Close icon
+              ) : (
+                <HiOutlineMenuAlt3 className="text-2xl text-white" /> // Hamburger icon
+              )}
+            </button>
           </div>
         </div>
       </div>
 
       {/* Lower Navbar */}
-      <div className="flex justify-center">
+      <div className="hidden sm:flex justify-center">
         <ul className="sm:flex hidden items-center gap-4">
-          {/* Admin specific menu */}
           {isLoggedIn && userEmail === "admin@example.com" ? (
             <>
               <li>
-                <a href="/#" className="inline-block px-4 hover:text-primary duration-200">
-                  Home
-                </a>
+                <a href="/#" className="inline-block px-4 hover:text-primary duration-200">Home</a>
               </li>
               <li>
-                <button onClick={goToDashboard} className="inline-block px-4 hover:text-primary duration-200">
-                  Products
-                </button>
+                <button onClick={goToDashboard} className="inline-block px-4 hover:text-primary duration-200">Products</button>
               </li>
               <li>
-                <button onClick={goToCategory} className="inline-block px-4 hover:text-primary duration-200">
-                  Categories
-                </button>
+                <button onClick={goToCategory} className="inline-block px-4 hover:text-primary duration-200">Categories</button>
               </li>
               <li>
-                <button onClick={handleLogout} className="px-4 py-2 hover:text-primary duration-200">
-                  Signout
-                </button>
+                <button onClick={handleLogout} className="px-4 py-2 hover:text-primary duration-200">Signout</button>
               </li>
             </>
           ) : (
-            // Normal user menu
             <>
               {Menu.map((data) => (
                 <li key={data.id}>
@@ -199,27 +200,53 @@ const Navbar = () => {
               {!isLoggedIn ? (
                 <>
                   <li>
-                    <button onClick={handleSignin} className="px-4 py-2 hover:text-primary duration-200">
-                      Signin
-                    </button>
+                    <button onClick={handleSignin} className="px-4 py-2 hover:text-primary duration-200">Signin</button>
                   </li>
                   <li>
-                    <button onClick={handleSignup} className="inline-block px-4 hover:text-primary duration-200">
-                      Signup
-                    </button>
+                    <button onClick={handleSignup} className="inline-block px-4 hover:text-primary duration-200">Signup</button>
                   </li>
                 </>
               ) : (
                 <li>
-                  <button onClick={handleLogout} className="px-4 py-2 hover:text-primary duration-200">
-                    Signout
-                  </button>
+                  <button onClick={handleLogout} className="px-4 py-2 hover:text-primary duration-200">Signout</button>
                 </li>
               )}
             </>
           )}
         </ul>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg z-50 rounded-lg w-[200px] transition-transform transform origin-top duration-300">
+          <div className="flex flex-col items-center py-4">
+            {isLoggedIn && userEmail === "admin@example.com" ? (
+              <>
+                <a href="/#" className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Home</a>
+                <button onClick={goToDashboard} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Products</button>
+                <button onClick={goToCategory} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Categories</button>
+                <button onClick={handleLogout} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Signout</button>
+              </>
+            ) : (
+              <>
+                {Menu.map((data) => (
+                  <a key={data.id} href={data.link} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">
+                    {data.name}
+                  </a>
+                ))}
+                {!isLoggedIn ? (
+                  <>
+                    <button onClick={handleSignin} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Signin</button>
+                    <button onClick={handleSignup} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Signup</button>
+                  </>
+                ) : (
+                  <button onClick={handleLogout} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Signout</button>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

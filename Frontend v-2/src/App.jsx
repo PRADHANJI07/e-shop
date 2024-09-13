@@ -9,9 +9,12 @@ import ProductList from './components/ProductList';
 import CategoriesList from './components/CategoriesList';
 import CategoryProducts from './components/CategoryProducts';
 import CartPage from './components/CartPage';
+import Loader from './components/Loader';
+
 function App() {
   const [userEmail, setUserEmail] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Check localStorage for token and email on component mount
   useEffect(() => {
@@ -22,12 +25,20 @@ function App() {
       setUserEmail(email);
       setIsLoggedIn(true);
     }
+    
+    // Simulate some delay for loading
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Adjust the delay as needed
   }, []);
-  console.log("get", userEmail);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <Router>
       <Routes>
-        {/* Pass the necessary states as props to Home */}
         <Route
           path="/"
           element={<Home
