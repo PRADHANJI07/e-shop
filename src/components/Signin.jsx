@@ -26,7 +26,7 @@ const Signin = ({ setUserEmail, setIsLoggedIn }) => {
       setUserEmail(email);
       setIsLoggedIn(true);
       alert("Login successfully");
-      if (email === "admin@example.com") {
+      if (email === "adminuser@example.com") {
         Navigate("/");
       } else {
         Navigate("/");

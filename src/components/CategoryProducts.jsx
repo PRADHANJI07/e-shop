@@ -125,7 +125,7 @@ const CategoryProducts = () => {
       <Navbar />
       <div className="container mx-auto py-10">
         <div className="relative flex justify-center items-center mb-10">
-          {userEmail === 'admin@example.com' && (
+          {userEmail === 'adminuser@example.com' && (
             <button
               onClick={handleAddProductClick}
               className="absolute right-0 bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-full"
@@ -153,7 +153,7 @@ const CategoryProducts = () => {
               <div className="flex justify-center">
                 <p className="text-lg font-semibold">₹{product.price}</p>
               </div>
-              {userEmail === 'admin@example.com' && (
+              {userEmail === 'adminuser@example.com' && (
                 <div className="flex justify-center">
                   <button
                     onClick={() => handleEditProductClick(product)}

@@ -25,7 +25,7 @@ function App() {
       setUserEmail(email);
       setIsLoggedIn(true);
     }
-    
+
     // Simulate some delay for loading
     setTimeout(() => {
       setLoading(false);
@@ -55,7 +55,7 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={isLoggedIn && userEmail === "admin@example.com"
+          element={isLoggedIn && userEmail === "adminuser@example.com"
             ? <Dashboard />
             : <Signin setUserEmail={setUserEmail} setIsLoggedIn={setIsLoggedIn} />
           }

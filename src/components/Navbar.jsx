@@ -173,7 +173,7 @@ const Navbar = () => {
       {/* Lower Navbar */}
       <div className="hidden sm:flex justify-center">
         <ul className="sm:flex hidden items-center gap-4">
-          {isLoggedIn && userEmail === "admin@example.com" ? (
+          {isLoggedIn && userEmail === "adminuser@example.com" ? (
             <>
               <li>
                 <a href="/#" className="inline-block px-4 hover:text-primary duration-200">Home</a>
@@ -220,7 +220,7 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg z-50 rounded-lg w-[200px] transition-transform transform origin-top duration-300">
           <div className="flex flex-col items-center py-4">
-            {isLoggedIn && userEmail === "admin@example.com" ? (
+            {isLoggedIn && userEmail === "adminuser@example.com" ? (
               <>
                 <a href="/#" className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Home</a>
                 <button onClick={goToDashboard} className="block px-4 py-2 hover:text-primary duration-200 border-b border-gray-300">Products</button>

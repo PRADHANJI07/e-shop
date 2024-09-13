@@ -150,7 +150,7 @@ const ProductList = () => {
                 Browse all available products.
               </p>
             </div>
-            {userEmail === 'admin@example.com' && (
+            {userEmail === 'adminuser@example.com' && (
               <button
                 onClick={handleAddProductClick}
                 className="absolute right-0 bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-full"
@@ -181,7 +181,7 @@ const ProductList = () => {
                       </div>
                     </div>
                   </Link>
-                  {userEmail === 'admin@example.com' && (
+                  {userEmail === 'adminuser@example.com' && (
                     <button
                       onClick={() => handleEditProductClick(product)}
                       className="bg-blue-500 text-white py-1 px-3 rounded-full"
