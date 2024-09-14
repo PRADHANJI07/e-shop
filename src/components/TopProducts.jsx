@@ -50,7 +50,7 @@ const TopProducts = () => {
           <p className="text-sm text-primary">Top Selling Products for you</p>
           <h1 className="text-3xl font-bold">Products</h1>
           <p className="text-xs text-gray-400">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, explicabo?
+            Choose from the best selling products online!!
           </p>
         </div>
         {/* Body */}

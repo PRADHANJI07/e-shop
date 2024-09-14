@@ -8,23 +8,23 @@ const ImageList = [
   {
     id: 1,
     img: Image1,
-    title: "Upto 50% off on all Women's Wear",
+    title: "Up to 50% off on Women's Wear",
     description:
-      "lorem His Life will forever be Changed dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Shop the latest styles in women's fashion with discounts up to 50%. Don't miss out on exclusive deals!",
   },
   {
     id: 2,
     img: Image2,
-    title: "30% off on all Men's Wear",
+    title: "30% off on Men's Wear",
     description:
-      "Who's there lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Upgrade your wardrobe with trendy men's wear at 30% off. Grab these limited-time offers now!",
   },
   {
     id: 3,
     img: Image3,
-    title: "70% off on all Products Sale",
+    title: "Huge Sale! Up to 70% off on All Products",
     description:
-      "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Enjoy massive discounts across all categories. Save big with up to 70% off on selected items!",
   },
 ];
 

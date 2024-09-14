@@ -29,8 +29,7 @@ const Categories = () => {
             Best Categories
           </h1>
           <p data-aos="fade-up" className="text-xs text-gray-400">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit
-            asperiores modi Sit asperiores modi
+            The best hand picked categories just for you!!
           </p>
         </div>
         {/* Body section */}

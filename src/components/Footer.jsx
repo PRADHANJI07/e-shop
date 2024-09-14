@@ -9,10 +9,11 @@ const Footer = () => {
         {/* Left section: Logo and Company Details */}
         <div className="space-y-3 sm:space-y-3 sm:items-start sm:text-left text-center flex flex-col items-center">
           <img src={Logo} alt="Company Logo" className="h-12 w-auto" />
-          <h2 className="text-lg font-bold">e-shop</h2>
+          <h2 className="text-lg font-bold">
+            <span className="px-2 py-1 rounded-md">e-Shop</span>
+          </h2>
           <p className="text-sm text-gray-400 max-w-xs">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Welcome to <span className="font-bold px-1 rounded">e-Shop</span> – Your go-to destination for stylish clothing! Discover the latest trends for men, women, and kids. Shop now for quality, comfort, and unbeatable prices!
           </p>
         </div>
 
@@ -31,10 +32,10 @@ const Footer = () => {
         <div className="space-y-3 text-center ">
           <h2 className="text-lg font-bold">Categories</h2>
           <ul className="space-y-2">
-            <li><a href="/#" className="text-gray-400 hover:text-white">Top Rated</a></li>
-            <li><a href="/#" className="text-gray-400 hover:text-white">Kids Wear</a></li>
-            <li><a href="/#" className="text-gray-400 hover:text-white">Mens Wear</a></li>
-            <li><a href="/#" className="text-gray-400 hover:text-white">Women Wear</a></li>
+            <li><a href="/product-list" className="text-gray-400 hover:text-white">Top Rated</a></li>
+            <li><a href="/category/3" className="text-gray-400 hover:text-white">Kids Wear</a></li>
+            <li><a href="/category/1" className="text-gray-400 hover:text-white">Mens Wear</a></li>
+            <li><a href="/category/2" className="text-gray-400 hover:text-white">Women Wear</a></li>
           </ul>
         </div>
 
